@@ -1,48 +1,70 @@
-JS Frameworks - Module Assignment 3
-Brief
-Create a new app using Create React App.
+# Getting Started with Create React App
 
-You can create an app inside the current folder using:
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-npx create-react-app .
-If your repo name has a capital letter in it make the folder name all lowercase before running the above command.
+## Available Scripts
 
-Level 1 is required.
+In the project directory, you can run:
 
-Level 2 is optional.
+### `npm start`
 
-You can use a UI library like React Bootstrap or style it all on your own. The styling is not important for this assignment but every frontend project must always be responsive.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-You can use any Wordpress installation for this. DO NOT submit your Wordpress files and DO NOT combine your React frontend with your Wordpress files.
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-Use .env.development to set the API URL. The markers will change this to their own URL when marking.
+### `npm test`
 
-The API calls in Level 1 do not require authorisation so you don't need to install or configure JWT support.
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-If you do Level 2 you will need to install and configure JWT support.
+### `npm run build`
 
-Consult the docs for the required endpoints.
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Level 1
-Make an API call and list all the pages in your Wordpress installation. This should happen on the home route: "/"
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-Clicking on a page should take the user to a "page/{id}" route.
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-Retrieve the id from the URL path and make a GET request to fetch the specific page.
+### `npm run eject`
 
-Render the title, date and excerpt properties.
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-Format the date in this format: 01 January 2021
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-The excerpt property contains HTML. Use dangerouslySetInnerHTML to render it.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-Level 2
-The home route should contain a login form.
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-Once logged in, the user should be redirected to the "/admin" route that lists all the pages.
+## Learn More
 
-Clicking on a page should redirect to a "/admin/edit/{id}" route that populates a form.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-The form should allow editing of the title property and the status property from a dropdown.
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-Use the same JWT plugin as the lessons as this is what the markers will have installed.
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
