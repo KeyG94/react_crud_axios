@@ -1,0 +1,11 @@
+.cardContainer {
+    background-color: blue;
+    list-style-type: none;
+    text-decoration: none;
+    color: black;
+
+    &:hover{
+        cursor: pointer;
+        color: rgb(65, 65, 65)
+    }
+}
