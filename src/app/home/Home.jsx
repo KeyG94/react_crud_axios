@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { PAGES, BASE_URL } from "../../utills/links";
 import axios from "axios";
-import { cardContainer } from "./Home.module.scss";
+import { cardContainer, loader } from "./Home.module.scss";
+import Loader from "react-loader-spinner";
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -35,9 +36,18 @@ export default function Home() {
     getPages();
   }, []);
 
+  //While loading is true
+  //imported react spinner from: https://www.npmjs.com/package/react-loader-spinner
+  if (loading) {
+    return <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />;
+  }
   //if not ok TODO!
+  if (error) {
+    return <div>An error occured: {error}</div>;
+  }
 
   //if all ok
+
   return (
     <>
       {data.map(({ id, title }) => (
