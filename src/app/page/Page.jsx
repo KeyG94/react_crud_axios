@@ -4,6 +4,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { PAGES, BASE_URL } from "../../utills/links";
 import axios from "axios";
 import dateFormatter from "../../utills/dateFormatter";
+import Loader from "react-loader-spinner";
+import createMarkup from "../../utills/createMarkup";
 
 const api = axios.create({
   baseURL: `${BASE_URL}/${PAGES}`,
@@ -39,16 +41,9 @@ export default function Page() {
   }, [id]);
 
   //when loading
+  //imported react spinner from: https://www.npmjs.com/package/react-loader-spinner
   if (loading) {
-    return (
-      // <ReactLoading
-      //   type="spokes"
-      //   color="#aaee22"
-      //   width={150}
-      //   className={loader}
-      // />
-      <p>...Loading</p>
-    );
+    return <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />;
   }
 
   // on error, return error
@@ -60,14 +55,11 @@ export default function Page() {
   const date = page.date;
   const excerpt = page.excerpt.rendered;
 
-  //get formatted date
-  const formattedDate = dateFormatter(date);
-
   return (
     <>
       <h1>{title}</h1>
-      <span>Published: {formattedDate}</span>
-      <p>{excerpt}</p>
+      <span>Published: {dateFormatter(date)}</span>
+      <div dangerouslySetInnerHTML={createMarkup(excerpt)}></div>
     </>
   );
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { PAGES, BASE_URL } from "../../utills/links";
 import axios from "axios";
-import { cardContainer, loader } from "./Home.module.scss";
+import { cardContainer } from "./Home.module.scss";
 import Loader from "react-loader-spinner";
 
 const api = axios.create({
