@@ -8,7 +8,7 @@ import Loader from "react-loader-spinner";
 import createMarkup from "../../utills/createMarkup";
 
 const api = axios.create({
-  baseURL: `${BASE_URL}/${PAGES}`,
+  baseURL: `${BASE_URL}${PAGES}`,
 });
 
 export default function Page() {

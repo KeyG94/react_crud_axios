@@ -4,6 +4,7 @@ import { PAGES, BASE_URL } from "../../utills/links";
 import axios from "axios";
 import { cardContainer } from "./Home.module.scss";
 import Loader from "react-loader-spinner";
+import LoginForm from "../login/LoginForm";
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -13,12 +14,12 @@ export default function Home() {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
 
-  console.log(loading, error);
+  //   console.log(loading, error);
 
   useEffect(() => {
     async function getPages() {
       try {
-        const response = await api.get(`/${PAGES}`);
+        const response = await api.get(`${PAGES}`);
 
         if (response.statusText === "OK") {
           console.log(response);
@@ -50,12 +51,19 @@ export default function Home() {
 
   return (
     <>
-      {data.map(({ id, title }) => (
-        //link to specific page, when on page, render Render the title, date and excerpt properties.
-        <Link to={`page/${id}`} key={id} className={cardContainer}>
-          <h1>{title.rendered}</h1>
-        </Link>
-      ))}
+      <div>
+        <LoginForm />
+      </div>
+      <div>
+        {data.map(({ id, title }) => (
+          //link to specific page, when on page, render Render the title, date and excerpt properties.
+          <div key={id} className={cardContainer}>
+            <Link to={`page/${id}`} key={id}>
+              <h1>{title.rendered}</h1>
+            </Link>
+          </div>
+        ))}
+      </div>
     </>
   );
 }
