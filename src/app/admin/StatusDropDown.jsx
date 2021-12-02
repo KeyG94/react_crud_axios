@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function StatusDropdown({ register, status }) {
-  const [currentStatus, setStatus] = useState([status]);
+  const [currentStatus] = useState([status]);
 
   return (
     <select name="status" {...register("status")}>

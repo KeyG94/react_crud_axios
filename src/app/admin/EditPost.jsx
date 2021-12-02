@@ -9,6 +9,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import StatusDropdown from "./StatusDropDown";
 import Loader from "react-loader-spinner";
+import { container } from "./Admin.module.scss";
 
 const api = axios.create({
   baseURL: `${BASE_URL}${PAGES}`,
@@ -81,7 +82,11 @@ export default function EditPost() {
   //when loading
   //imported react spinner from: https://www.npmjs.com/package/react-loader-spinner
   if (loading) {
-    return <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />;
+    return (
+      <div className={container}>
+        <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
+      </div>
+    );
   }
 
   // on error, return error
@@ -95,25 +100,34 @@ export default function EditPost() {
 
   //   The form should allow editing of the title property and the status property from a dropdown.
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <fieldset>
-        <div>
-          <label>Title: </label>
-          {errors.title && <span>{errors.title.message}</span>}
-          <input
-            name="title"
-            type="text"
-            {...register("title")}
-            value={title}
-          />
-          {errors.status && <span>{errors.status.message}</span>}
-        </div>
-        <div>
-          <label>Status: </label>
-          <StatusDropdown register={register} status={status} />
-        </div>
-        <button>{submitting ? "submitting..." : "update"}</button>
-      </fieldset>
-    </form>
+    <>
+      <span
+        onClick={() => navigate("/admin")}
+        style={{ cursor: "pointer", fontWeight: "bold" }}
+      >
+        {"<< Back"}
+      </span>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <fieldset>
+          <div>
+            <label>Title: </label>
+            {errors.title && <span>{errors.title.message}</span>}
+            <input
+              name="title"
+              type="text"
+              {...register("title")}
+              value={title}
+            />
+            {errors.status && <span>{errors.status.message}</span>}
+          </div>
+          <div>
+            <label>Status: </label>
+            <StatusDropdown register={register} status={status} />
+          </div>
+          <button>{submitting ? "updating..." : "update"}</button>
+          {serverError && <span>{serverError}</span>}
+        </fieldset>
+      </form>
+    </>
   );
 }

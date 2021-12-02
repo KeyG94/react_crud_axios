@@ -20,14 +20,12 @@ const schema = yup.object().shape({
 export default function LoginForm() {
   const [submitting, setSubmitting] = useState(false);
   const [loginError, setLoginError] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
   const [auth, setAuth] = useContext(AuthContext);
 
   const logout = () => {
     setAuth(null);
     navigate("/");
-    setLoggedIn(false);
   };
 
   const {
@@ -84,7 +82,17 @@ export default function LoginForm() {
           </fieldset>
         </form>
       ) : (
-        <span onClick={logout}>Log Out</span>
+        <>
+          <span onClick={logout} style={{ cursor: "pointer", marginRight: 5 }}>
+            Logout
+          </span>
+          <span
+            onClick={() => navigate("/admin")}
+            style={{ cursor: "pointer" }}
+          >
+            Admin
+          </span>
+        </>
       )}
     </>
   );

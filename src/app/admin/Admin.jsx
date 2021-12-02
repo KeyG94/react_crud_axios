@@ -5,7 +5,7 @@ import Loader from "react-loader-spinner";
 import { BASE_URL, PAGES } from "../../utills/links";
 import { useNavigate } from "react-router";
 import { cardContainer } from "../home/Home.module.scss";
-import { adminCard } from "./Admin.module.scss";
+import { adminCard, container } from "./Admin.module.scss";
 import { Link } from "react-router-dom";
 
 const api = axios.create({
@@ -13,7 +13,7 @@ const api = axios.create({
 });
 
 export default function Admin() {
-  const [auth, setAuth] = useContext(AuthContext);
+  const [auth] = useContext(AuthContext);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -25,7 +25,7 @@ export default function Admin() {
         const response = await api.get(`${PAGES}`);
 
         if (response.statusText === "OK") {
-          console.log(response);
+          // console.log(response);
           setData(response.data);
           setLoading(false);
         } else {
@@ -51,7 +51,11 @@ export default function Admin() {
   //imported react spinner from: https://www.npmjs.com/package/react-loader-spinner
   if (loading) {
     //loading component
-    return <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />;
+    return (
+      <div className={container}>
+        <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
+      </div>
+    );
   }
 
   //if not ok TODO!
@@ -67,7 +71,17 @@ export default function Admin() {
         redirectUser()
       ) : (
         <div>
-          Admin
+          <span style={{ marginRight: 5, textDecoration: "underline" }}>
+            Admin
+          </span>
+          <span
+            onClick={() => {
+              navigate("/");
+            }}
+            style={{ cursor: "pointer" }}
+          >
+            Home
+          </span>
           {data.map(({ id, title }) => (
             //link to specific page edit, when on page, render Render the title, date and excerpt properties.
             <div key={id} className={cardContainer}>

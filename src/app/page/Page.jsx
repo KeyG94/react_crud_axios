@@ -6,6 +6,7 @@ import axios from "axios";
 import dateFormatter from "../../utills/dateFormatter";
 import Loader from "react-loader-spinner";
 import createMarkup from "../../utills/createMarkup";
+import { container } from "./Page.module.scss";
 
 const api = axios.create({
   baseURL: `${BASE_URL}${PAGES}`,
@@ -43,7 +44,11 @@ export default function Page() {
   //when loading
   //imported react spinner from: https://www.npmjs.com/package/react-loader-spinner
   if (loading) {
-    return <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />;
+    return (
+      <div className={container}>
+        <Loader type="ThreeDots" color="#00BFFF" height={80} width={80} />
+      </div>
+    );
   }
 
   // on error, return error
@@ -57,6 +62,12 @@ export default function Page() {
 
   return (
     <>
+      <span
+        onClick={() => navigate("/")}
+        style={{ cursor: "pointer", fontWeight: "bold" }}
+      >
+        {"<< Back"}
+      </span>
       <h1>{title}</h1>
       <span>Published: {dateFormatter(date)}</span>
       <div dangerouslySetInnerHTML={createMarkup(excerpt)}></div>
